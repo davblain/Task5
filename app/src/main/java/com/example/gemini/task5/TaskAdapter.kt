@@ -45,6 +45,7 @@ class TaskAdapter:RecyclerView.Adapter<TaskHolder>() {
         notifyItemChanged(position)
     }
     fun markCompleted(position: Int) {
+
         tasks[position].state = true
         taskDao.updateTask(tasks[position])
         notifyItemChanged(position)

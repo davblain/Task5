@@ -23,13 +23,13 @@ class EditTaskActivity : AppCompatActivity() {
             idOfTask = intent.extras[TASK_ID] as Long
             bindTask(taskDao.findById(idOfTask)!!)
         }
-
+        confirmEditButton.setOnClickListener { updateTask()  }
     }
 
     private fun bindTask(task: Task) {
         this.task = task
         editedDescription.setText(task.description)
-        confirmEditButton.setOnClickListener { updateTask()  }
+
     }
 
     fun updateTask() {
