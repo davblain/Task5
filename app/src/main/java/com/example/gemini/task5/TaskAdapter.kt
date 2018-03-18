@@ -59,7 +59,7 @@ class TaskAdapter:RecyclerView.Adapter<TaskHolder>() {
     fun  addTask(description: String) {
         val task = taskDao.addTask(Task(null,description,false,null))
         tasks.add(task)
-        notifyItemInserted(tasks.size-1)
+        notifyItemInserted(tasks.size)
     }
 
 }

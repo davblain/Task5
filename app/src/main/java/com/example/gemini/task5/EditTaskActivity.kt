@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.text.Editable
 import android.widget.Toast
 import com.example.gemini.task5.model.Task
@@ -19,18 +20,28 @@ class EditTaskActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_task)
+        idOfTask = intent.extras[TASK_ID] as Long
         if (savedInstanceState==null) {
-            idOfTask = intent.extras[TASK_ID] as Long
             bindTask(taskDao.findById(idOfTask)!!)
         }
         confirmEditButton.setOnClickListener { updateTask()  }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable("task",task)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        task = savedInstanceState.getSerializable("task") as Task
+    }
     private fun bindTask(task: Task) {
         this.task = task
         editedDescription.setText(task.description)
 
     }
+
 
     fun updateTask() {
         val intent = Intent()
