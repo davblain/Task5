@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Task5</string>
+    <string name="list_of_task_text">Список задач</string>
+    <string name="Complete">Сохранить</string>
+    <string name="add_description">Введите описание задачи</string>
+    <string name="edit_task">Изменить</string>
+</resources>
